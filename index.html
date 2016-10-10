@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Angular QuickStart</title>
+    <title>Pokedex</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/styles/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
     <!-- Polyfill(s) for older browsers -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
@@ -18,8 +20,13 @@
       System.import('app').catch(function(err){ console.error(err); });
     </script>
   </head>
-
   <body>
-    <my-app>Loading...</my-app>
+    <my-app>
+      <div class="container">
+        <div class="valign-wrapper">
+          <h5 class="valign center-align" style="width: 100%">Loading...</h5>
+        </div>
+      </div>
+    </my-app>
   </body>
 </html>
