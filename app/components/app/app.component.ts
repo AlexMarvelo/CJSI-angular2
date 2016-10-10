@@ -1,22 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { PokemonsService } from '../../services/pokemons.service';
 
 @Component({
     selector: 'my-app',
     template: `
     <app-header></app-header>
-    <div class="section no-pad-bot" id="index-banner">
+    <div class="section no-pad-bot">
       <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">Starter Template</h1>
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+        <br>
+        <h1 class="header center orange-text">Welcome to Pokedex</h1>
+        <br>
+        <div class="row">
+          <card *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></card>
         </div>
-        <div class="row center">
-          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-        </div>
-        <br><br>
       </div>
     </div>
-    <app-footer></app-footer>`
+    <app-footer></app-footer>`,
+    providers: [
+      PokemonsService
+    ]
 })
-export class AppComponent { }
+export class AppComponent implements OnInit {
+  constructor(private pokemonsService: PokemonsService) {}
+
+  ngOnInit() {
+    this.pokemons = this.pokemonsService.getPokemons();
+  }
+}
