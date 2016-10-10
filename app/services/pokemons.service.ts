@@ -5,7 +5,11 @@ import { MockPokemons } from '../mock-pokemons';
 
 @Injectable()
 export class PokemonsService {
-  getPokemons(): Pokemon[] {
-    return MockPokemons;
+  getPokemons(): Promise<Pokemon[]> {
+    return new Promise<Pokemon[]>((resolve, reject) => {
+      setTimeout(() => {
+        resolve(MockPokemons)
+      }, 1000);
+    });
   }
 }
