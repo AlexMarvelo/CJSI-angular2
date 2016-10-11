@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 
-import { HeaderComponent }  from './footer.component';
+import { FooterComponent }  from './footer.component';
 
 @NgModule({
   declarations: [ FooterComponent ],
