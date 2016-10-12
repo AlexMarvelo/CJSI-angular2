@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Pokemon } from '../../models/pokemon.model';
 import { PokemonsService } from '../../services/pokemons.service';
@@ -37,12 +38,20 @@ import { PokemonsService } from '../../services/pokemons.service';
 })
 export class PokemonDetailedComponent implements OnInit {
   pokemon: Pokemon;
+  id: number;
   propsToShow = ['Attack', 'Defense', 'Happiness', 'Speed', 'Height', 'Weight'];
 
-  constructor(private pokemonsService: PokemonsService) {}
+  constructor(
+    private pokemonsService: PokemonsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.pokemonsService.getPokemon(1)
+    this.route.params.forEach((params: Params) => {
+      this.id = +params['id'];
+    });
+    this.pokemonsService.getPokemon(this.id)
       .then((newPokemon: Pokemon) => {
         this.pokemon = newPokemon;
         console.log(newPokemon);

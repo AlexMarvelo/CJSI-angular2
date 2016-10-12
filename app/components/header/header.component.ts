@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
     template: `
     <nav class="light-blue lighten-1" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">{{logoText}}</a>
+        <a id="logo-container" routerLink="/pokemons" class="brand-logo">{{logoText}}</a>
         <ul class="right hide-on-med-and-down">
         </ul>
         <ul id="nav-mobile" class="side-nav">

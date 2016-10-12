@@ -13,7 +13,27 @@ import { FooterComponent } from '../footer/footer.component';
 @NgModule({
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        redirectTo: '/pokemons',
+        pathMatch: 'full'
+      },
+      {
+        path: 'pokemons',
+        component: PokemonsListComponent
+      },
+      {
+        path: 'pokemons/:id',
+        component: PokemonDetailedComponent
+      },
+      {
+        path: '**',
+        redirectTo: '/pokemons',
+        pathMatch: 'full'
+      }
+    ])
   ],
   declarations: [
     AppComponent,

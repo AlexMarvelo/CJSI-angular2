@@ -18,7 +18,7 @@ import { Pokemon } from '../../models/pokemon.model';
             {{pokemon.name}}
             <i class="material-icons right">more_vert</i>
           </span>
-          <p><a href="#">Visit pokemon page</a></p>
+          <p><a routerLink="/pokemons/{{pokemon.pkdx_id}}">Visit pokemon page</a></p>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4">

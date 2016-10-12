@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
     selector: 'my-app',
     template: `
     <app-header></app-header>
-    <pokemon-detailed></pokemon-detailed>
+    <router-outlet></router-outlet>
     <app-footer></app-footer>`
 })
 export class AppComponent {}
