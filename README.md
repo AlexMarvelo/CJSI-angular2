@@ -4,8 +4,11 @@ Hometask for Ciklum JS Internship Lesson 9
 ---
 
 ##### List of used technologies:
-- Anguar 2 Framowork
-- webpack
+- Anguar 2 Framework
+- SystemJS
+- TypeScript
+- MaterializeCSS lib
+- rxjs
 
 ---
 
