@@ -54,7 +54,8 @@ export class PokemonDetailedComponent implements OnInit {
     this.pokemonsService.getPokemon(this.id)
       .then((newPokemon: Pokemon) => {
         this.pokemon = newPokemon;
-        console.log(newPokemon);
+        console.log('Current pokemon:')
+        console.dir(newPokemon);
       });
   }
 }

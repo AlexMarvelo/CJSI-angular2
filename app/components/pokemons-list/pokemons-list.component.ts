@@ -28,23 +28,27 @@ import { Pokemon } from '../../models/pokemon.model';
       </div>`
 })
 export class PokemonsListComponent implements OnInit {
-  pokemons: Pokemon[] = [];
+  pokemons: Pokemon[];
   pageTitle = 'Welcome to Pokedex';
   status = 'OK';
 
   constructor(private pokemonsService: PokemonsService) {}
 
   ngOnInit(): void {
-    this.addNewPokemons();
+    this.pokemons = this.pokemonsService.getPokemons();
+    if (!this.pokemons.length) {
+      this.addNewPokemons();
+    }
   }
 
   addNewPokemons(): void {
     if (this.status == 'PENDING') return;
     this.status = 'PENDING';
-    this.pokemonsService.getPokemons()
+    this.pokemonsService.loadMorePokemons()
       .then((newPokemons: Pokemon[]) => {
         this.pokemons = this.pokemons.concat(newPokemons);
-        console.log(newPokemons);
+        console.log('Loaded pokemons:');
+        console.dir(newPokemons);
         this.status = 'OK';
       });
   }

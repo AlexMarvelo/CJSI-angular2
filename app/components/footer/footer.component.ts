@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <footer class="page-footer orange">
       <div class="footer-copyright">
         <div class="container">
-        Made with <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        Made with <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>
         </div>
       </div>
     </footer>`
