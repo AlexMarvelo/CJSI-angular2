@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }  from './app.component';
 import { HeaderComponent } from '../header/header.component';
 import { PokemonsListComponent } from '../pokemons-list/pokemons-list.component';
+import { CardComponent } from '../card/card.component';
 import { FooterComponent } from '../footer/footer.component';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FooterComponent } from '../footer/footer.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    PokemonsListComponent
+    PokemonsListComponent,
+    CardComponent
   ],
   bootstrap: [
     AppComponent

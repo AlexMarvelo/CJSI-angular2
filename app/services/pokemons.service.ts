@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Pokemon } from '../models/pokemon.model';
 import { ResponseData } from '../models/responseData.model';
 
-import { MockPokemons } from '../mock-pokemons';
 import config from '../config';
 
 @Injectable()
@@ -21,6 +20,15 @@ export class PokemonsService {
         if (this.status == 200) {
           let parser = new Promise(resolve2 => resolve2(this.response))
             .then((stringData: string) => JSON.parse(stringData))
+            .then(data => {
+              if (data.objects) {
+                data.objects.map((pokemon: Pokemon) => {
+                  pokemon.imgSrc = `${config.imgSource}${pokemon.pkdx_id}.png`;
+                  return pokemon;
+                })
+              }
+              return data;
+            })
             .then(data => resolve(data))
         } else {
           reject(new Error(this.statusText));

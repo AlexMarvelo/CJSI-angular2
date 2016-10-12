@@ -10,22 +10,27 @@ import { Pokemon } from '../../models/pokemon.model';
         <div class="card-image waves-effect waves-block waves-light">
           <img
             class="activator"
-            src="http://kingofwallpapers.com/picture/picture-005.jpg"
-            alt="Pokemon #{{pokemon.id}}">
+            src="{{pokemon.imgSrc}}"
+            alt="{{pokemon.name}}">
         </div>
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">
             {{pokemon.name}}
             <i class="material-icons right">more_vert</i>
           </span>
-          <p><a href="#">This is a link</a></p>
+          <p><a href="#">Visit pokemon page</a></p>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4">
             {{pokemon.name}}
             <i class="material-icons right">close</i>
           </span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
+          <p style="margin-bottom: 5px;">
+            Types:
+          </p>
+          <ul style="margin-top: 5px; padding-left: 10px;">
+            <li *ngFor="let type of pokemon.types">{{type.name.slice(0,1).toUpperCase() + type.name.slice(1).toLowerCase()}}</li>
+          </ul>
         </div>
       </div>
     </div>`

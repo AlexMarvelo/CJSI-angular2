@@ -4,6 +4,8 @@ import { PokemonsService } from '../../services/pokemons.service';
 import { Pokemon } from '../../models/pokemon.model';
 import { ResponseData } from '../../models/responseData.model';
 
+import { CardComponent } from '../card/card.component';
+
 @Component({
     selector: 'pokemons-list',
     providers: [
@@ -16,7 +18,7 @@ import { ResponseData } from '../../models/responseData.model';
           <h1 class="header center orange-text">{{pageTitle}}</h1>
           <br>
           <div class="row">
-          
+            <card *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></card>
           </div>
         </div>
       </div>`
