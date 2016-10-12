@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonsService } from '../../services/pokemons.service';
 import { Pokemon } from '../../models/pokemon.model';
 
-import { CardComponent } from '../card/card.component';
-
 @Component({
     selector: 'pokemons-list',
     providers: [
@@ -46,6 +44,7 @@ export class PokemonsListComponent implements OnInit {
     this.pokemonsService.getPokemons()
       .then((newPokemons: Pokemon[]) => {
         this.pokemons = this.pokemons.concat(newPokemons);
+        console.log(newPokemons);
         this.status = 'OK';
       });
   }

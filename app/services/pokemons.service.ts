@@ -8,44 +8,45 @@ export class PokemonsService {
   next = `${config.url}api/v1/pokemon/?limit=${config.limit}`;
 
   getPokemons() {
+    return this.getServerResponse(this.next)
+      .then(data => {
+        if (data.objects) {
+          data.objects.map((pokemon: Pokemon) => {
+            pokemon.imgSrc = `${config.imgSource}${pokemon.pkdx_id}.png`;
+            return pokemon;
+          })
+        }
+        return data;
+      })
+      .then(data => {
+        if (data.meta && data.meta.next) {
+          this.next = `${config.url}${data.meta.next.slice(1)}`;
+        }
+        return data;
+      })
+      .then(data => data.objects || [])
+  }
+
+  getPokemon(id: number) {
+    return this.getServerResponse(`${config.url}api/v1/pokemon/${id}/`)
+      .then(pokemon => {
+        pokemon.imgSrc = `${config.imgSource}${pokemon.pkdx_id}.png`;
+        return pokemon;
+      });
+  }
+
+  getServerResponse(url: string) {
     let self = this;
-    return new Promise<Pokemon[]>((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
       xhr.open(
         'GET',
-        self.next,
+        url,
         true
       );
       xhr.onload = function() {
         if (this.status == 200) {
-          let parser = new Promise(resolve2 => resolve2(this.response))
-            .then((stringData: string) => JSON.parse(stringData))
-            .then(data => {
-              if (data.objects) {
-                data.objects.map((pokemon: Pokemon) => {
-                  pokemon.imgSrc = `${config.imgSource}${pokemon.pkdx_id}.png`;
-                  return pokemon;
-                })
-              }
-              console.log(data);
-              return data;
-            })
-            .then(data => {
-              if (data.meta && data.meta.next) {
-                self.next = `${config.url}${data.meta.next.slice(1)}`;
-              }
-              return data;
-            })
-            .then(data => {
-              if (data.objects) {
-                resolve(data.objects);
-              } else {
-                reject(new Error('no pokemons found'));
-              }
-            })
-            .catch(
-              error => reject(new Error(error))
-            );
+          resolve(this.response);
         } else {
           reject(new Error(this.statusText));
         }
@@ -54,6 +55,7 @@ export class PokemonsService {
         reject(new Error('Network Error'));
       };
       xhr.send();
-    });
+    })
+    .then((stringData: string) => JSON.parse(stringData))
   }
 }

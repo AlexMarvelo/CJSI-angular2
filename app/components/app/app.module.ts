@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }  from './app.component';
 import { HeaderComponent } from '../header/header.component';
 import { PokemonsListComponent } from '../pokemons-list/pokemons-list.component';
+import { PokemonDetailedComponent } from '../pokemon-detailed/pokemon-detailed.component';
 import { CardComponent } from '../card/card.component';
 import { FooterComponent } from '../footer/footer.component';
 
@@ -18,6 +19,7 @@ import { FooterComponent } from '../footer/footer.component';
     HeaderComponent,
     FooterComponent,
     PokemonsListComponent,
+    PokemonDetailedComponent,
     CardComponent
   ],
   bootstrap: [
