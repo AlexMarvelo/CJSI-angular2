@@ -5,7 +5,7 @@ import { Pokemon } from '../../models/pokemon.model';
 @Component({
     selector: 'card',
     template: `
-    <div class="col s4">
+    <div *ngIf="pokemon" class="col s4">
       <div class="card">
         <div class="card-image waves-effect waves-block waves-light">
           <img

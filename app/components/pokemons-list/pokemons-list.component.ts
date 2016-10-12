@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { PokemonsService } from '../../services/pokemons.service';
 import { Pokemon } from '../../models/pokemon.model';
-import { ResponseData } from '../../models/responseData.model';
 
 import { CardComponent } from '../card/card.component';
 
@@ -20,20 +19,34 @@ import { CardComponent } from '../card/card.component';
           <div class="row">
             <card *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></card>
           </div>
+          <div class="center">
+            <a
+              class="waves-effect waves-light btn {{status=='PENDING' ? 'disabled' : ''}}"
+              (click)="addNewPokemons()">
+              Load more
+            </a>
+          </div>
         </div>
       </div>`
 })
 export class PokemonsListComponent implements OnInit {
-  pokemons: Pokemon[];
-  pageTitle: 'Welcome to Pokedex';
+  pokemons: Pokemon[] = [];
+  pageTitle = 'Welcome to Pokedex';
+  status = 'OK';
 
   constructor(private pokemonsService: PokemonsService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.addNewPokemons();
+  }
+
+  addNewPokemons(): void {
+    if (this.status == 'PENDING') return;
+    this.status = 'PENDING';
     this.pokemonsService.getPokemons()
-      .then((data: ResponseData) => {
-        if (data.objects) this.pokemons = data.objects;
-        console.log(this.pokemons);
+      .then((newPokemons: Pokemon[]) => {
+        this.pokemons = this.pokemons.concat(newPokemons);
+        this.status = 'OK';
       });
   }
 }
