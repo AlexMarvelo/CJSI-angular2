@@ -1,6 +1,8 @@
 # CJSI-angular2
 Hometask for Ciklum JS Internship Lesson 9
 
+This aplication fetch data about pokemons using [RESTful pokemon API](http://pokeapi.co/) and represents it on page. More info about pokemon available on detailed pokemon page
+
 ---
 
 ##### List of used technologies:
@@ -19,3 +21,5 @@ cd CJSI-angular2
 npm i
 npm start
 ```
+
+![Apliacation Screenshot](http://heyalex.xyz/static/img/screenshot-angular2.png)
